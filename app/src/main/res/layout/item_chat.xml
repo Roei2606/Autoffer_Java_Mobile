@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/chatCardView"
     android:layout_width="match_parent"
@@ -8,46 +9,78 @@
     app:cardCornerRadius="16dp"
     app:cardElevation="6dp"
     app:strokeWidth="1dp"
-    app:strokeColor="?attr/colorPrimary">
+    app:strokeColor="@color/colorPrimary"
+    android:backgroundTint="@color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp">
 
+        <!-- תמונה עגולה -->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imageViewProfile"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:contentDescription="@string/profile_picture"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <!-- שם משתמש -->
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textViewName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/textViewTimestamp"
-            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@color/black"
             android:maxLines="1"
-            android:ellipsize="end" />
+            android:ellipsize="end"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toEndOf="@id/imageViewProfile"
+            app:layout_constraintEnd_toStartOf="@id/textViewTimestamp"
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <!-- הודעה אחרונה -->
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textViewLastMessage"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:textSize="14sp"
-            android:textColor="#666666"
+            android:textColor="@color/gray_light"
             android:maxLines="1"
             android:ellipsize="end"
             app:layout_constraintTop_toBottomOf="@id/textViewName"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@id/textViewName"
             app:layout_constraintEnd_toEndOf="parent" />
 
+        <!-- תאריך -->
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textViewTimestamp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12sp"
-            android:textColor="#999999"
+            android:textColor="@color/gray_light"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- מספר הודעות שלא נקראו -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textViewUnreadCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/badge_background"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:padding="6dp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/textViewTimestamp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="6dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

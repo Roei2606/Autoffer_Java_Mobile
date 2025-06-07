@@ -6,4 +6,5 @@
     <string name="login_registerTXT">Login / Register</string>
     <string name="start_chat">Send Message</string>
     <string name="username_LBL_TXT">Username</string>
+    <string name="profile_picture">profile_pic</string>
 </resources>

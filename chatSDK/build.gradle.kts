@@ -10,7 +10,6 @@ android {
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -29,34 +28,30 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
-
 }
 
 dependencies {
-    // RSocket & Networking
+    implementation(project(":rsocketSDK")) // ✅ תלות ב-rsocketSDK
+
+    implementation(project(":usersSDK"))
     implementation(libs.rsocket.core)
     implementation(libs.rsocket.transport.netty)
     implementation(libs.reactor.core)
     implementation(libs.netty.all)
 
-    // JSON
     implementation(libs.jackson.annotations)
     implementation(libs.jackson.core)
     implementation(libs.jackson.databind)
     implementation(libs.jackson.datatype.jsr310)
     implementation(libs.jackson.module.kotlin)
 
-    // Logging
     implementation(libs.slf4j.simple)
 
-    // Coroutines
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
-
-    // Tests
-    testImplementation(libs.junit)
 
     implementation("io.reactivex.rxjava3:rxjava:3.1.5")
     implementation("io.reactivex.rxjava3:rxandroid:3.0.2")
 
+    testImplementation(libs.junit)
 }

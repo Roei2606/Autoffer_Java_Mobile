@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#E0E0E0">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -14,8 +15,9 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="#E0E0E0"
             android:elevation="4dp"
+            android:titleTextColor="#ffffff"
             android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"/>
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -50,27 +52,40 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="8dp"
-            android:background="@android:color/white"
+            android:background="#E0E0E0"
             android:elevation="4dp"
             app:layout_constraintBottom_toBottomOf="parent">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextMessage"
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="Type a message"
-                android:inputType="textMultiLine"
-                android:maxLines="4"
-                android:padding="12dp"
-                android:background="@null"/>
+                app:boxBackgroundColor="@color/white"
+                app:boxStrokeColor="#d0d0d0">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:maxLines="4"
+                    android:textColor="#000000"
+                    android:background="@null"
+                    android:padding="12dp"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonSend"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Send"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:backgroundTint="#ffffff"
                 android:layout_marginStart="8dp"
-                android:text="Send"/>
+                app:cornerRadius="8dp"/>
 
         </LinearLayout>
 

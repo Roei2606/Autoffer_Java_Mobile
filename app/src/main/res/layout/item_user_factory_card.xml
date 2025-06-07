@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:padding="16dp"
+    android:elevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- שם המפעל -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textFactoryName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Factory Name"
+            android:textStyle="bold"
+            android:textSize="18sp" />
+
+        <!-- כתובת המפעל -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textFactoryAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Address" />
+
+        <!-- מזהה עסקי -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textBusinessId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Business ID: #" />
+
+        <!-- כפתור פתיחה לפרטי קשר -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonShowContact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Show Contact Info"
+            android:layout_marginTop="4dp" />
+
+        <!-- פרטי קשר - מוסתר כברירת מחדל -->
+        <LinearLayout
+            android:id="@+id/contactSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:paddingTop="8dp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textContactName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Owner Name" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textContactPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phone" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textContactEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email" />
+        </LinearLayout>
+
+        <!-- כפתור פתיחת צ'אט -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonOpenChat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Open Chat"
+            android:layout_marginTop="8dp" />
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
