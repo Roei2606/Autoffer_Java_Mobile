@@ -60,9 +60,6 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * ✅ Converts phone number to E.164 format. Example: 0501234567 → +972501234567
-     */
     private String formatPhoneNumberToE164(String rawPhone) {
         if (rawPhone.startsWith("0") && rawPhone.length() == 10) {
             return "+972" + rawPhone.substring(1);

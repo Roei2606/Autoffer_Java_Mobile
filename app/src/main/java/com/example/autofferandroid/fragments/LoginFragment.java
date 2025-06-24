@@ -42,39 +42,30 @@ public class LoginFragment extends Fragment {
     private void attemptLogin() {
         String email = binding.inputEmail.getText() != null ? binding.inputEmail.getText().toString().trim() : "";
         String password = binding.inputPassword.getText() != null ? binding.inputPassword.getText().toString().trim() : "";
-
         if (TextUtils.isEmpty(email)) {
             binding.emailLayout.setError("Email is required");
             return;
         } else {
             binding.emailLayout.setError(null);
         }
-
         if (TextUtils.isEmpty(password)) {
             binding.passwordLayout.setError("Password is required");
             return;
         } else {
             binding.passwordLayout.setError(null);
         }
-
         binding.buttonLogin.setEnabled(false);
-
         userManager.loginUser(email, password).thenAccept(user -> {
             if (getActivity() == null) return;
-
             SessionManager.getInstance().setCurrentUser(user);
-
-            requireActivity().runOnUiThread(() -> {
+                requireActivity().runOnUiThread(() -> {
                 Toast.makeText(requireContext(), "Login successful", Toast.LENGTH_SHORT).show();
-
-                // ✅ מעבר ל־HomeFragment דרך ה־NavGraph
                 Navigation.findNavController(binding.getRoot()).navigate(R.id.action_loginFragment_to_homeFragment);
             });
 
         }).exceptionally(throwable -> {
             if (getActivity() == null) return null;
-
-            requireActivity().runOnUiThread(() -> {
+                requireActivity().runOnUiThread(() -> {
                 binding.buttonLogin.setEnabled(true);
                 Toast.makeText(requireContext(), "Login failed: " + throwable.getMessage(), Toast.LENGTH_LONG).show();
             });

@@ -117,7 +117,6 @@ public class ForgotPasswordFragment extends Fragment {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         Toast.makeText(requireContext(), "Phone verified successfully", Toast.LENGTH_SHORT).show();
-                        // 👉 לאחר אימות, נווט למסך איפוס סיסמה
                         Navigation.findNavController(binding.getRoot())
                                 .navigate(R.id.action_forgotPasswordFragment_to_resetPasswordFragment);
                     } else {

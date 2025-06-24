@@ -46,13 +46,13 @@ public class UserDirectoryFragment extends Fragment {
 
         if (currentUserType == UserType.PRIVATE_CUSTOMER) {
             setupToggleBar();
-            fetchArchitects(); // ברירת מחדל
+            fetchArchitects();
         } else {
             binding.profileTypeToggleGroup.setVisibility(View.GONE);
             if (currentUserType == UserType.ARCHITECT) {
                 fetchFactories();
             } else if (currentUserType == UserType.FACTORY) {
-                fetchRelevantCustomersForFactory(); // מימוש בהמשך
+                fetchRelevantCustomersForFactory();
             }
         }
     }

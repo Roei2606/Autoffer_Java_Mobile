@@ -96,24 +96,6 @@ public class NewProjectFragment extends Fragment {
         return new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault()).format(new Date());
     }
 
-//    private void navigateToAddManualFragment() {
-//        AddManualFragment fragment = new AddManualFragment();
-//        requireActivity().getSupportFragmentManager()
-//                .beginTransaction()
-//                .replace(R.id.fragment_container, fragment)
-//                .addToBackStack(null)
-//                .commit();
-//    }
-//
-//    private void navigateToCurrentProjectFragment() {
-//        CurrentProjectFragment fragment = new CurrentProjectFragment();
-//        requireActivity().getSupportFragmentManager()
-//                .beginTransaction()
-//                .replace(R.id.fragment_container, fragment)
-//                .addToBackStack(null)
-//                .commit();
-//    }
-
     private void navigateToAddManualFragment() {
         androidx.navigation.Navigation.findNavController(requireView())
                 .navigate(R.id.action_newProjectFragment_to_addManualFragment);
@@ -127,6 +109,5 @@ public class NewProjectFragment extends Fragment {
     private void navigateToScanFragment() {
         Toast.makeText(getContext(), "Scan flow (TODO)", Toast.LENGTH_SHORT).show();
     }
-
 
 }

@@ -66,7 +66,6 @@ public class CurrentProjectFragment extends Fragment {
 
     private void showEditDialog(LocalItemEntity item) {
         new EditItemDialog(requireContext(), item, updatedItem -> {
-            // החלפת פריט ברשימה הקיימת
             for (int i = 0; i < currentItems.size(); i++) {
                 if (currentItems.get(i).getItemNumber() == updatedItem.getItemNumber()) {
                     currentItems.set(i, updatedItem);

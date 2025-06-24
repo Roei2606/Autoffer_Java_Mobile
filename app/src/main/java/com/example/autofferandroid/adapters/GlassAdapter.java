@@ -43,7 +43,6 @@ public class GlassAdapter extends RecyclerView.Adapter<GlassAdapter.GlassViewHol
         Glass glass = glasses.get(position);
         holder.textGlassType.setText(glass.getType());
 
-        // ✅ טען תמונה מהשרת
         if (glass.getImageData() != null && !glass.getImageData().isEmpty()) {
             byte[] imageBytes = new byte[glass.getImageData().size()];
             for (int i = 0; i < imageBytes.length; i++) {

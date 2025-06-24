@@ -11,15 +11,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.example.ads_sdk.models.Ad;
 import com.example.ads_sdk.network.AdsManager;
+import com.example.autofferandroid.R;
 import com.example.autofferandroid.adapters.AdsAdapter;
 import com.example.autofferandroid.databinding.FragmentHomeBinding;
 import com.example.autofferandroid.transformers.DoorOpenPageTransformer;
+import com.example.autofferandroid.utils.BitmapUtils;
 import com.example.core_models_sdk.models.User;
 import com.example.core_models_sdk.models.UserType;
 import com.example.users_sdk.network.SessionManager;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,10 +33,9 @@ public class HomeFragment extends Fragment {
     private AdsAdapter adsAdapter;
     private AdsManager adsManager;
     private final List<Ad> adList = new ArrayList<>();
-
     private final Handler handler = new Handler(Looper.getMainLooper());
     private Runnable autoScrollRunnable;
-    private static final long AUTO_SCROLL_DELAY = 4000; // 4 seconds
+    private static final long AUTO_SCROLL_DELAY = 4000;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -58,12 +59,22 @@ public class HomeFragment extends Fragment {
 
     private void setupUserDetails() {
         User currentUser = SessionManager.getInstance().getCurrentUser();
+
         if (currentUser != null) {
             binding.textViewUserName.setText("Hello, " + currentUser.getFirstName() + "!");
-            //binding.textViewUserType.setText(currentUser.getProfileType());
+            binding.textViewUserType.setText(currentUser.getProfileType().name().replace("_", " "));
+
+            byte[] logoBytes = currentUser.getPhotoBytes(); // assume logo is byte[] from Mongo
+            if (logoBytes != null && logoBytes.length > 0) {
+                binding.imageViewProfile.setImageBitmap(BitmapUtils.decodeBase64ToBitmap(logoBytes));
+            } else {
+                binding.imageViewProfile.setImageResource(R.drawable.ic_placeholder_user);
+            }
+
         } else {
             binding.textViewUserName.setText("Hello, Guest!");
             binding.textViewUserType.setText("Unknown Type");
+            binding.imageViewProfile.setImageResource(R.drawable.ic_placeholder_user);
         }
     }
 
@@ -101,18 +112,12 @@ public class HomeFragment extends Fragment {
 
     private void showLoading(boolean isLoading) {
         if (binding == null) return;
-        if (isLoading) {
-            binding.loadingIndicator.setVisibility(View.VISIBLE);
-            binding.viewPagerAds.setVisibility(View.GONE);
-        } else {
-            binding.loadingIndicator.setVisibility(View.GONE);
-            binding.viewPagerAds.setVisibility(View.VISIBLE);
-        }
+        binding.loadingIndicator.setVisibility(isLoading ? View.VISIBLE : View.GONE);
+        binding.viewPagerAds.setVisibility(isLoading ? View.GONE : View.VISIBLE);
     }
 
     private void startAutoScroll() {
         stopAutoScroll();
-
         autoScrollRunnable = new Runnable() {
             @Override
             public void run() {

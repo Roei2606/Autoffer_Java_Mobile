@@ -1,18 +1,32 @@
 package com.example.autofferandroid;
 
 import android.app.Application;
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
+import android.widget.Toast;
 
+import com.example.rsocket_sdk.network.PingSender;
 import com.example.rsocket_sdk.network.RSocketClientManager;
-import com.example.rsocket_sdk.network.ServerConfig;
-
 
 public class AutofferApplication extends Application {
+
+    private static final String TAG = "AutofferApplication";
 
     @Override
     public void onCreate() {
         super.onCreate();
-        //ServerConfig.init(this);
-        // כאן ייווצר החיבור ל-RSocket מיד כשהאפליקציה מתחילה
-        RSocketClientManager.getInstance().connect();
+
+        boolean connected = RSocketClientManager.getInstance().connect();
+
+        if (connected) {
+            Log.i(TAG, "✅ Connected to server. Sending ping...");
+            PingSender.sendPing(getApplicationContext());
+        } else {
+            Log.e(TAG, "❌ Failed to connect to RSocket server.");
+            new Handler(Looper.getMainLooper()).post(() ->
+                    Toast.makeText(getApplicationContext(), "❌ RSocket connection failed", Toast.LENGTH_LONG).show()
+            );
+        }
     }
 }

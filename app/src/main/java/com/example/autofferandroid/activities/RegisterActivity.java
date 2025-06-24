@@ -46,13 +46,10 @@ public class RegisterActivity extends AppCompatActivity {
         String phone = Objects.requireNonNull(binding.inputPhone.getText()).toString().trim();
         String address = Objects.requireNonNull(binding.inputAddress.getText()).toString().trim();
 
-        // Profile type: 0 = Private, 1 = Architect
         UserType userType = binding.profileToggleGroup.getCheckedButtonId() == binding.profileArchitect.getId()
                 ? UserType.ARCHITECT
                 : UserType.PRIVATE_CUSTOMER;
 
-
-        // Validation
         if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty()
                 || confirmPassword.isEmpty() || phone.isEmpty() || address.isEmpty()) {
             Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show();
@@ -74,7 +71,6 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        // Send register request
         RegisterUserRequest request = new RegisterUserRequest(
                 firstName,
                 lastName,

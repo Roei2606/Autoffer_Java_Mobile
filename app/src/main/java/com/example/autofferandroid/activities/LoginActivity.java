@@ -57,7 +57,6 @@ public class LoginActivity extends AppCompatActivity {
         String email = Objects.requireNonNull(binding.usernameInput.getText()).toString().trim();
         String password = Objects.requireNonNull(binding.passwordInput.getText()).toString().trim();
 
-        // 🔒 Validation
         if (!isValidEmail(email)) {
             binding.usernameInput.setError("Invalid email format");
             return;
@@ -92,7 +91,6 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
-    // ✅ Email validation method
     private boolean isValidEmail(String email) {
         Pattern emailPattern = Pattern.compile("^[A-Za-z0-9+_.-]+@(.+)$");
         return emailPattern.matcher(email).matches();

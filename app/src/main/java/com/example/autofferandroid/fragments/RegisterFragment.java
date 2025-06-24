@@ -40,8 +40,6 @@ public class RegisterFragment extends Fragment {
     public void onViewCreated(@NonNull View view,
                               @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        // ✅ קבלת סוג המשתמש מה־arguments
         if (getArguments() != null) {
             userType = RegisterFragmentArgs.fromBundle(getArguments()).getUserType();
         }
@@ -66,7 +64,6 @@ public class RegisterFragment extends Fragment {
             return;
         }
 
-        // Validation
         if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty()
                 || confirmPassword.isEmpty() || phone.isEmpty() || address.isEmpty()) {
             Toast.makeText(requireContext(), "All fields are required", Toast.LENGTH_SHORT).show();
@@ -88,7 +85,6 @@ public class RegisterFragment extends Fragment {
             return;
         }
 
-        // Submit request
         RegisterUserRequest request = new RegisterUserRequest(
                 firstName,
                 lastName,
@@ -104,7 +100,7 @@ public class RegisterFragment extends Fragment {
         userManager.registerUser(request)
                 .thenAccept(user -> {
                     if (getActivity() == null) return;
-                    requireActivity().runOnUiThread(() -> {
+                        requireActivity().runOnUiThread(() -> {
                         binding.buttonRegister.setEnabled(true);
                         Toast.makeText(requireContext(), "Registered successfully!", Toast.LENGTH_SHORT).show();
                         Navigation.findNavController(binding.getRoot())

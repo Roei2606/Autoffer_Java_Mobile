@@ -7,12 +7,12 @@ plugins {
 
 android {
     namespace = "com.example.autofferandroid"
-    compileSdk = libs.versions.compileSdk.get().toInt()
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.autofferandroid"
-        minSdk = libs.versions.minSdk.get().toInt()
-        targetSdk = libs.versions.targetSdk.get().toInt()
+        minSdk = 26
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -41,9 +41,25 @@ android {
         viewBinding = true
     }
 
-    packagingOptions {
-        exclude("META-INF/INDEX.LIST")
+    packaging {
+        resources {
+            excludes += setOf(
+                "META-INF/INDEX.LIST",
+                "META-INF/DEPENDENCIES",
+                "META-INF/LICENSE",
+                "META-INF/LICENSE.txt",
+                "META-INF/NOTICE",
+                "META-INF/NOTICE.txt",
+                "META-INF/io.netty.versions.properties",
+                "META-INF/versions/**",
+                "META-INF/*.kotlin_module",
+                "META-INF/*.version",
+                "META-INF/*.properties"
+            )
+        }
     }
+
+
 
 }
 
@@ -69,10 +85,12 @@ dependencies {
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.swiperefreshlayout)
     implementation(libs.glide)
+    implementation(libs.navigation.fragment.ktx)
+    implementation(libs.navigation.ui.ktx)
     annotationProcessor(libs.compiler)
     implementation(libs.lottie)
-    implementation(libs.navigation.fragment)
-    implementation(libs.navigation.ui)
+   // implementation(libs.navigation.fragment)
+ //   implementation(libs.navigation.ui)
 
     // ✅ Networking
     implementation(libs.rsocket.core)

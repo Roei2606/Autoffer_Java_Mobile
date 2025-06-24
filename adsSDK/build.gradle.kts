@@ -5,11 +5,11 @@ plugins {
 
 android {
     namespace = "com.example.ads_sdk"
-    compileSdk = libs.versions.compileSdk.get().toInt()
+    compileSdk = 34 // או כל ערך שמתאים לך
 
     defaultConfig {
-        minSdk = libs.versions.minSdk.get().toInt()
-        targetSdk = libs.versions.targetSdk.get().toInt()
+        minSdk = 24
+        targetSdk = 34
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")

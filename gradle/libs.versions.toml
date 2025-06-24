@@ -8,7 +8,6 @@ libraryVer = "8.2.2"
 # Android SDK versions
 compileSdk = "34"
 lottie = "6.1.0"
-navigationFragment = "2.9.0"
 targetSdk = "34"
 minSdk = "26"
 
@@ -21,15 +20,20 @@ jacksonKotlin = "2.18.2"
 material = "1.12.0"
 appcompat = "1.7.0"
 recyclerview = "1.3.2"
-constraintlayout = "2.1.4"
+constraintlayout = "2.2.1"
 swiperefreshlayout = "1.1.0"
 activity = "1.9.0"
 lifecycleKtx = "2.8.7"
 
 # Reactive & RSocket
+#netty = "4.1.105.Final"
+#rsocket = "1.1.3"
+#reactor = "3.7.3"
+
 netty = "4.1.105.Final"
-rsocket = "1.1.3"
-reactor = "3.7.3"
+rsocket = "1.1.4"
+reactor = "3.6.6"
+
 slf4j = "2.0.9"
 
 # Coroutines
@@ -40,6 +44,8 @@ junit = "4.13.2"
 espresso = "3.6.1"
 extJunit = "1.2.1"
 kotlin = "1.9.22"
+navigationFragmentKtx = "2.9.0"
+navigationUiKtx = "2.9.0"
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -64,8 +70,6 @@ jackson-module-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-
 lottie = { module = "com.airbnb.android:lottie", version.ref = "lottie" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
-navigation-fragment = { module = "androidx.navigation:navigation-fragment", version.ref = "navigationFragment" }
-navigation-ui = { module = "androidx.navigation:navigation-ui", version.ref = "navigationFragment" }
 recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayout" }
@@ -73,6 +77,11 @@ activity = { group = "androidx.activity", name = "activity", version.ref = "acti
 lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycleKtx" }
 
 # Networking & Reactive
+#netty-all = { module = "io.netty:netty-all", version.ref = "netty" }
+#rsocket-core = { module = "io.rsocket:rsocket-core", version.ref = "rsocket" }
+#rsocket-transport-netty = { module = "io.rsocket:rsocket-transport-netty", version.ref = "rsocket" }
+#reactor-core = { module = "io.projectreactor:reactor-core", version.ref = "reactor" }
+
 netty-all = { module = "io.netty:netty-all", version.ref = "netty" }
 rsocket-core = { module = "io.rsocket:rsocket-core", version.ref = "rsocket" }
 rsocket-transport-netty = { module = "io.rsocket:rsocket-transport-netty", version.ref = "rsocket" }
@@ -89,3 +98,5 @@ kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-c
 junit = { module = "junit:junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "extJunit" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
+navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
+navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }

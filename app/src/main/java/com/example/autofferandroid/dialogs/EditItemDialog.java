@@ -28,8 +28,6 @@ public class EditItemDialog {
 
     public void show() {
         DialogEditItemBinding binding = DialogEditItemBinding.inflate(LayoutInflater.from(context));
-
-        // הצגת הערכים הקיימים
         binding.editQuantity.setText(String.valueOf(originalItem.getQuantity()));
         binding.editLocation.setText(originalItem.getLocation());
         binding.textDimensions.setText("Dimensions: " +
@@ -63,7 +61,6 @@ public class EditItemDialog {
                 return;
             }
 
-            // יצירת עותק מעודכן
             LocalItemEntity updated = new LocalItemEntity();
             updated.setId(originalItem.getId());
             updated.setItemNumber(originalItem.getItemNumber());
@@ -81,7 +78,6 @@ public class EditItemDialog {
         });
 
         binding.buttonCancel.setOnClickListener(v -> dialog.dismiss());
-
         dialog.show();
     }
 }

@@ -84,7 +84,6 @@ public class UserCardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             super(binding.getRoot());
             this.binding = binding;
         }
-
         @SuppressLint("SetTextI18n")
         void bind(FactoryUser factoryUser) {
             binding.textFactoryName.setText(factoryUser.getFactoryName());
@@ -121,7 +120,7 @@ public class UserCardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             binding.textUserName.setText(user.getFirstName() + " " + user.getLastName());
             binding.textUserAddress.setText(user.getAddress());
 
-            binding.buttonOpenChat.setOnClickListener(v -> {
+            binding.buttonSendMessage.setOnClickListener(v -> {
                 // ✉️ לקרוא לפונקציה לפתיחת צ'אט עם user.getId()
             });
         }

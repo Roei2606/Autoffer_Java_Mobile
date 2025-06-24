@@ -17,17 +17,14 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
     private ActivityResetPasswordBinding binding;
     private UserManager userManager;
-    private String verifiedPhoneNumber; // הוכח במהלך אימות SMS
+    private String verifiedPhoneNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityResetPasswordBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         userManager = new UserManager();
-
-        // ✅ קבלת מספר הטלפון המאומת מ-ForgotPasswordActivity
         verifiedPhoneNumber = getIntent().getStringExtra("phoneNumber");
 
         binding.buttonSubmitNewPassword.setOnClickListener(v -> submitNewPassword());

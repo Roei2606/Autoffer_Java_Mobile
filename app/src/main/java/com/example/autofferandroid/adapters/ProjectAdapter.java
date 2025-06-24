@@ -67,6 +67,7 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
     public int getItemCount() {
         return projectList != null ? projectList.size() : 0;
     }
+
     class ProjectViewHolder extends RecyclerView.ViewHolder {
         TextView textProjectAddress, textItemCount, textCreatedAt;
         TextView textClientName, textClientPhone, textClientEmail, textFactoryStatus;
@@ -93,19 +94,24 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
 
         }
 
-
         public void bind(ProjectDTO project) {
             textProjectAddress.setText(project.getProjectAddress());
             if (textItemCount != null)
                 textItemCount.setText("Items: " + (project.getItems() != null ? project.getItems().size() : 0));
             if (textCreatedAt != null)
                 textCreatedAt.setText("Created At: " + project.getCreatedAt());
-
-            // סטטוסים (ללקוחות פרטיים בלבד)
             if (!isFactory && containerFactoryStatuses != null) {
                 containerFactoryStatuses.removeAllViews();
-                if (project.getQuoteStatuses() != null) {
-                    for (Map.Entry<String, String> entry : project.getQuoteStatuses().entrySet()) {
+
+                Map<String, String> quoteStatuses = project.getQuoteStatuses();
+                if (quoteStatuses == null || quoteStatuses.isEmpty()) {
+                    TextView warningText = new TextView(itemView.getContext());
+                    warningText.setText("No factories received this project yet.");
+                    warningText.setTextSize(14);
+                    warningText.setPadding(10, 5, 10, 5);
+                    containerFactoryStatuses.addView(warningText);
+                } else {
+                    for (Map.Entry<String, String> entry : quoteStatuses.entrySet()) {
                         String factoryId = entry.getKey();
                         String status = entry.getValue();
 
@@ -120,11 +126,8 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
                             });
                         }
                     }
-
                 }
             }
-
-            // פרטי לקוח (למפעלים)
             if (isFactory && textClientName != null) {
                 String clientId = project.getClientId();
                 if (clientId != null) {
@@ -138,8 +141,6 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
                     }
                 }
             }
-
-            // סטטוס אישי למפעל
             if (isFactory && textFactoryStatus != null) {
                 String status = project.getQuoteStatuses() != null ? project.getQuoteStatuses().get(currentUserId) : null;
                 if (status != null) {
@@ -150,8 +151,6 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
                     textFactoryStatus.setVisibility(View.GONE);
                 }
             }
-
-            // כפתורים
             if (buttonViewPdf != null)
                 buttonViewPdf.setOnClickListener(v -> listener.onViewBoqClicked(project));
 

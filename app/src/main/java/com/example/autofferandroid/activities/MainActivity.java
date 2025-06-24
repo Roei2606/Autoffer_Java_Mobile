@@ -24,17 +24,12 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // 🔁 מציאת NavHostFragment והגדרת NavController
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.nav_host_fragment);
 
         if (navHostFragment != null) {
             navController = navHostFragment.getNavController();
-
-            // ✅ חיבור BottomNavigationView ל־NavController
             NavigationUI.setupWithNavController(binding.bottomNavigation, navController);
-
-            // 👁️ הצגת/הסתרת תפריט תחתון לפי היעד
             navController.addOnDestinationChangedListener((@NonNull NavController controller,
                                                            @NonNull NavDestination destination,
                                                            Bundle arguments) -> {

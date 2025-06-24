@@ -34,8 +34,6 @@ public class ResetPasswordFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        // ✅ קבלת מספר טלפון שעבר אימות דרך Bundle
         if (getArguments() != null) {
             verifiedPhoneNumber = getArguments().getString("phoneNumber");
         }

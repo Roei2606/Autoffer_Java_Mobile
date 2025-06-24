@@ -40,12 +40,10 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.AdViewHolder> {
 
         holder.textTitle.setText(ad.getTitle());
         holder.textDescription.setText(ad.getDescription());
-
-        // טוענים את התמונה בעזרת Glide
         Glide.with(context)
                 .load(ad.getImageUrl())
-                .placeholder(R.drawable.ic_placeholder) // <-- ישירות לקובץ vector
-                .error(R.drawable.ic_error)       // אפשר גם כאן אותו
+                .placeholder(R.drawable.ic_placeholder)
+                .error(R.drawable.ic_error)
                 .into(holder.imageAd);
 
     }
@@ -56,12 +54,10 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.AdViewHolder> {
     }
 
     public void setAds(List<Ad> newAds) {
-        ads.clear();          // 🧹 מנקה את הרשימה הישנה
-        ads.addAll(newAds);   // ➕ מוסיף את כל החדשים
-        notifyDataSetChanged(); // 🔄 מודיע ל-RecyclerView לעדכן תצוגה
+        ads.clear();
+        ads.addAll(newAds);
+        notifyDataSetChanged();
     }
-
-
 
     public static class AdViewHolder extends RecyclerView.ViewHolder {
 
