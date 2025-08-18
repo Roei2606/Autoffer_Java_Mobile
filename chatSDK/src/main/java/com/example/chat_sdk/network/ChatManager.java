@@ -119,7 +119,7 @@ public class ChatManager {
     }
 
     public CompletableFuture<Boolean> hasChats(String userId) {
-        String url = "http://10.0.2.2:8081/hasChats/" + userId;
+        String url = "http://10.0.2.2:8080/hasChats/" + userId;
 
         return CompletableFuture.supplyAsync(() -> {
             try {
